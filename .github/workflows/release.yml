@@ -54,3 +54,14 @@ jobs:
           gh release create "$tag" "$RUNNER_TEMP/index.json" --target "$GITHUB_SHA" --latest \
             --title "Catalog $(date -u +%Y-%m-%d) (${GITHUB_SHA::7})" \
             --notes "index.json of commit $GITHUB_SHA"
+
+      - name: Tell the website
+        # Rebuilds getgreenshot.org/recipes; needs a token allowed to send a repository_dispatch to greenshot/greenshot
+        env:
+          GH_TOKEN: ${{ secrets.WEBSITE_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::notice::WEBSITE_DISPATCH_TOKEN isn't set, the website picks up this index with its next build"
+            exit 0
+          fi
+          gh api repos/greenshot/greenshot/dispatches -f event_type=recipes-published
