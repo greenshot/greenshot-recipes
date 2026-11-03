@@ -1,0 +1,10 @@
+{
+  "$schema": "../../catalog.schema.json",
+  "version": "1.0.0",
+  "minGreenshot": "1.4.0",
+  "summary": "Capture the active window on an HDR display and save it as a lossless HDR file (JPEG XR), highlights included.",
+  "tags": [
+    "hdr",
+    "file"
+  ]
+}
