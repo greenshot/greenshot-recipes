@@ -1,0 +1,10 @@
+{
+  "$schema": "../../catalog.schema.json",
+  "version": "1.0.0",
+  "minGreenshot": "1.4.0",
+  "summary": "Captures a region and prints directly to the default printer without showing print dialogs.",
+  "tags": [
+    "after-capture",
+    "printer"
+  ]
+}
