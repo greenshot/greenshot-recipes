@@ -1,6 +1,6 @@
 {
   "$schema": "https://getgreenshot.org/schemas/recipe.schema.json",
-  "version": "3.0",
+  "version": "2.0",
   "id": "cli_convert_format",
   "name": "CLI Image Format Converter",
   "description": "Loads an image file, converts it to the requested target format (png, jpg, webp, bmp, gif, tiff), and saves it under the same name with the new extension.",

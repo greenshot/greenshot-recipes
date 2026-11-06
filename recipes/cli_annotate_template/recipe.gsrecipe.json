@@ -1,6 +1,6 @@
 {
   "$schema": "https://getgreenshot.org/schemas/recipe.schema.json",
-  "version": "3.0",
+  "version": "2.0",
   "id": "cli_annotate_template",
   "name": "CLI Apply Template & Annotation",
   "description": "Loads an image file, applies a template watermark/badge annotation, and saves the result under the same name with a suffix (e.g. example1.png -> example1-with_annotation.png).",

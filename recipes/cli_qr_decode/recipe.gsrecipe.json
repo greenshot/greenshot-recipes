@@ -1,6 +1,6 @@
 {
   "$schema": "https://getgreenshot.org/schemas/recipe.schema.json",
-  "version": "3.0",
+  "version": "2.0",
   "id": "cli_qr_decode",
   "name": "CLI QR Code & Barcode Extractor",
   "description": "Reads a bitmap file from the command line, decodes any QR codes or barcodes on the image, and outputs the decoded text directly to stdout.",

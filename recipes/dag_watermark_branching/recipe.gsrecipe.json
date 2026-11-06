@@ -1,6 +1,6 @@
 {
   "$schema": "https://getgreenshot.org/schemas/recipe.schema.json",
-  "version": "3.0",
+  "version": "2.0",
   "id": "dag_watermark_branching",
   "name": "DAG Workflow with environment watermark and parallel feedback",
   "description": "Demonstrates DAG branching, variable assignment, scoped user/machine environment variables, mathematical positioning expressions, and multi-drawable surface stamping.",

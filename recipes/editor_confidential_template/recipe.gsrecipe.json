@@ -1,6 +1,6 @@
 {
   "$schema": "https://getgreenshot.org/schemas/recipe.schema.json",
-  "version": "3.0",
+  "version": "2.0",
   "id": "editor_confidential_template",
   "name": "Editor Template: Confidential Watermark",
   "description": "Exposed directly inside the Greenshot Editor 'Recipes' menu. When selected, applies a red 'CONFIDENTIAL' banner and watermark directly to the active editor surface in-place without exporting.",
