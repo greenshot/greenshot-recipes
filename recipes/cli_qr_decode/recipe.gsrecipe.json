@@ -1,6 +1,6 @@
 {
   "$schema": "https://getgreenshot.org/schemas/recipe.schema.json",
-  "version": "2.0",
+  "version": "3.0",
   "id": "cli_qr_decode",
   "name": "CLI QR Code & Barcode Extractor",
   "description": "Reads a bitmap file from the command line, decodes any QR codes or barcodes on the image, and outputs the decoded text directly to stdout.",
@@ -28,7 +28,7 @@
         "Command": "qr",
         "Description": "Scan and decode QR codes from an image file",
         "FireAndForget": false,
-        "Stdout": "${Barcode.Text}",
+        "Stdout": "${var.Barcode.Text}",
         "Arguments": [
           {
             "name": "file",
@@ -49,7 +49,7 @@
       "enabled": true,
       "parameters": {
         "SourceType": "File",
-        "Filename": "${Filename}"
+        "Filename": "${var.Filename}"
       }
     },
     {
@@ -68,7 +68,7 @@
       "name": "Print to Console",
       "enabled": true,
       "parameters": {
-        "Text": "${Barcode.Text}"
+        "Text": "${var.Barcode.Text}"
       }
     }
   ],

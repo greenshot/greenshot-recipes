@@ -1,7 +1,7 @@
 {
   "$schema": "https://getgreenshot.org/schemas/recipe.schema.json",
   "kind": "recipe",
-  "version": "2.0",
+  "version": "3.0",
   "id": "hdr_window_to_file",
   "name": "HDR Window to File",
   "description": "Capture the active window on an HDR display and save it as an HDR file (JPEG XR, lossless), highlights included. Without HDR content (a window on an SDR display, nothing brighter than SDR white) a PNG is saved, the notification says so.",

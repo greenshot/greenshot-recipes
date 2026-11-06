@@ -1,6 +1,6 @@
 {
   "$schema": "https://getgreenshot.org/schemas/recipe.schema.json",
-  "version": "2.0",
+  "version": "3.0",
   "id": "qr_codes_showcase",
   "name": "QR Codes Showcase (Payments, Business Cards & Links)",
   "description": "Demonstrates inserting multiple structured QR codes: an EPC SEPA bank transfer QR code for payments, a vCard contact business card, and a dynamic website link with rounded dots styling.",
