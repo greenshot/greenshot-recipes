@@ -1,6 +1,6 @@
 {
   "$schema": "../../catalog.schema.json",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "minGreenshot": "1.4.0",
   "summary": "Region capture scaled down to a maximum width, smaller images filled up, with an optional border.",
   "tags": [
