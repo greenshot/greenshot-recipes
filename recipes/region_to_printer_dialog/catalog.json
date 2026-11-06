@@ -1,0 +1,10 @@
+{
+  "$schema": "../../catalog.schema.json",
+  "version": "1.0.0",
+  "minGreenshot": "1.4.0",
+  "summary": "Captures a region and opens the system printer dialog without showing Greenshot's destinations picker.",
+  "tags": [
+    "after-capture",
+    "printer"
+  ]
+}
