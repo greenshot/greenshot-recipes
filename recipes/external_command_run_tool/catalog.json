@@ -1,8 +1,8 @@
 {
   "$schema": "../../catalog.schema.json",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "minGreenshot": "1.4.466",
-  "summary": "Template: region capture that runs an external program on the file, then opens the editor.",
+  "summary": "Template: region capture that runs a program of your choice on the file, then opens the editor.",
   "tags": [
     "after-capture",
     "external-command",
