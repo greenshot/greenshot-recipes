@@ -1,0 +1,193 @@
+{
+  "$schema": "https://getgreenshot.org/schemas/recipe.schema.json",
+  "kind": "recipe",
+  "version": "2.0",
+  "id": "user_prompt_auto_save",
+  "name": "Region with automatic save",
+  "description": "Captures a region and saves it automatically into a dated folder after a short countdown. In the prompt you can choose Save As or open the capture in the editor instead.",
+  "authors": [
+    {
+      "name": "Christian Schulz",
+      "github": "Christian-Schulz"
+    }
+  ],
+  "copyright": "Copyright (c) 2026 Christian Schulz",
+  "license": "MIT",
+  "showInContextMenu": true,
+  "requires": [],
+  "triggers": [
+    {
+      "triggerType": "Hotkey",
+      "name": "Hotkey Trigger",
+      "enabled": true,
+      "parameters": {
+        "Hotkey": "${option.hotkey}"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source_region",
+      "stepType": "Source",
+      "name": "Prepare for Region",
+      "enabled": true,
+      "parameters": {
+        "SourceType": "Region",
+        "DelayMs": 0
+      }
+    },
+    {
+      "id": "interactiveselection_region",
+      "stepType": "InteractiveSelection",
+      "name": "Select Region",
+      "enabled": true,
+      "parameters": {
+        "SelectionMode": "Region",
+        "AllowWindowSnapping": true
+      }
+    },
+    {
+      "id": "userprompt",
+      "stepType": "UserPrompt",
+      "name": "Ask how to save",
+      "enabled": true,
+      "parameters": {
+        "Title": "Automatic save",
+        "Message": "Saving automatically to:\r\n${option.automatic_path}\\${time.now:yyyy-MM-dd}\r\nFile name:\r\n${payload.time:yyyy-MM-dd-HH-mm-ss} ${payload.title}.png",
+        "ShowPreview": true,
+        "TimeoutSeconds": "${option.timeout_seconds}",
+        "Choices": [
+          {
+            "Key": "save_as",
+            "Label": "Save As",
+            "Style": "Secondary"
+          },
+          {
+            "Key": "ok",
+            "Label": "Save automatically (default)",
+            "Style": "Primary",
+            "IsDefault": true
+          },
+          {
+            "Key": "cancel",
+            "Label": "Editor (Esc)",
+            "Style": "Danger",
+            "IsCancel": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "savefile_as",
+      "stepType": "SaveFile",
+      "name": "Save As",
+      "enabled": true,
+      "parameters": {
+        "SaveDirectory": "${option.manual_path}",
+        "FilenamePattern": "${payload.title}",
+        "Format": "png",
+        "IfFileExists": "Ask",
+        "AskForFilename": true
+      }
+    },
+    {
+      "id": "savefile",
+      "stepType": "SaveFile",
+      "name": "Save automatically",
+      "enabled": true,
+      "parameters": {
+        "SaveDirectory": "${option.automatic_path}\\${time.now:yyyy-MM-dd}",
+        "FilenamePattern": "${payload.time:yyyy-MM-dd-HH-mm-ss} ${payload.title}",
+        "Format": "png",
+        "IfFileExists": "AddNumber"
+      }
+    },
+    {
+      "id": "open_editor",
+      "stepType": "Editor",
+      "name": "Open in editor",
+      "enabled": true,
+      "parameters": {}
+    }
+  ],
+  "flow": {
+    "startNodes": [
+      "source_region"
+    ],
+    "transitions": [
+      {
+        "from": "source_region",
+        "to": "interactiveselection_region"
+      },
+      {
+        "from": "interactiveselection_region",
+        "to": "userprompt"
+      },
+      {
+        "from": "userprompt",
+        "to": "savefile_as",
+        "branch": "save_as"
+      },
+      {
+        "from": "userprompt",
+        "to": "savefile",
+        "branch": "ok"
+      },
+      {
+        "from": "userprompt",
+        "to": "open_editor",
+        "branch": "cancel"
+      }
+    ]
+  },
+  "options": [
+    {
+      "key": "hotkey",
+      "type": "Hotkey",
+      "default": "Ctrl + Alt + A",
+      "label": "Hotkey"
+    },
+    {
+      "key": "automatic_path",
+      "type": "DirectoryPath",
+      "default": "${user.pictures}\\Greenshot_Autosave",
+      "label": "Folder for automatic saving",
+      "description": "Each day gets its own subfolder (yyyy-MM-dd)",
+      "quickSettings": false
+    },
+    {
+      "key": "manual_path",
+      "type": "DirectoryPath",
+      "default": "${user.pictures}\\Greenshot_Manualsave",
+      "label": "Folder for Save As",
+      "description": "The folder the Save As dialog starts in",
+      "quickSettings": false
+    },
+    {
+      "key": "timeout_seconds",
+      "type": "Integer",
+      "default": 3,
+      "min": 1,
+      "max": 60,
+      "label": "Seconds until automatic save",
+      "quickSettings": false
+    }
+  ],
+  "translations": {
+    "de-DE": {
+      "name": "Bereich automatisch speichern",
+      "description": "Nimmt einen Bereich auf und speichert ihn nach einem kurzen Countdown automatisch in einem Ordner mit dem Datum. In der Abfrage kannst du stattdessen Speichern unter wählen oder die Aufnahme im Editor öffnen.",
+      "options.hotkey.label": "Tastenkombination",
+      "options.automatic_path.label": "Ordner für das automatische Speichern",
+      "options.automatic_path.description": "Jeder Tag bekommt einen eigenen Unterordner (yyyy-MM-dd)",
+      "options.manual_path.label": "Ordner für Speichern unter",
+      "options.manual_path.description": "Der Ordner, in dem der Dialog Speichern unter startet",
+      "options.timeout_seconds.label": "Sekunden bis zum automatischen Speichern",
+      "nodes.userprompt.Title": "Automatisch speichern",
+      "nodes.userprompt.Message": "Wird automatisch gespeichert in:\r\n${option.automatic_path}\\${time.now:yyyy-MM-dd}\r\nDateiname:\r\n${payload.time:yyyy-MM-dd-HH-mm-ss} ${payload.title}.png",
+      "nodes.userprompt.Choices.save_as": "Speichern unter",
+      "nodes.userprompt.Choices.ok": "Automatisch speichern (Standard)",
+      "nodes.userprompt.Choices.cancel": "Editor (Esc)"
+    }
+  }
+}
